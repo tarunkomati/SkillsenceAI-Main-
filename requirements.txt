@@ -1,0 +1,14 @@
+Django==4.2
+djangorestframework
+djangorestframework-simplejwt
+django-allauth
+django-cors-headers
+whitenoise
+gunicorn
+psycopg[binary]
+Pillow
+reportlab
+matplotlib
+pdfminer.six
+python-docx
+PyPDF2

@@ -1,0 +1,240 @@
+
+@import '@fontsource/space-grotesk/300.css';
+@import '@fontsource/space-grotesk/400.css';
+@import '@fontsource/space-grotesk/500.css';
+@import '@fontsource/space-grotesk/600.css';
+@import '@fontsource/space-grotesk/700.css';
+@import '@fontsource/fraunces/500.css';
+@import '@fontsource/fraunces/600.css';
+@import '@fontsource/fraunces/700.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 38 55% 97%;
+    --foreground: 222 32% 14%;
+
+    --card: 36 60% 98%;
+    --card-foreground: 222 32% 14%;
+
+    --popover: 36 60% 98%;
+    --popover-foreground: 222 32% 14%;
+
+    --primary: 191 88% 35%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 40 35% 92%;
+    --secondary-foreground: 222 32% 14%;
+
+    --muted: 36 24% 92%;
+    --muted-foreground: 220 12% 42%;
+
+    --accent: 18 92% 58%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 32 18% 85%;
+    --input: 36 24% 94%;
+    --ring: 191 88% 35%;
+
+    --radius: 1rem;
+
+    /* Custom tokens */
+    --glass: 36 60% 98%;
+    --glass-border: 32 20% 86%;
+    --glow-primary: 191 88% 35%;
+    --glow-accent: 18 92% 58%;
+    --gradient-start: 191 88% 35%;
+    --gradient-end: 18 92% 58%;
+
+    --sidebar-background: 36 60% 98%;
+    --sidebar-foreground: 222 32% 14%;
+    --sidebar-primary: 191 88% 35%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 36 24% 92%;
+    --sidebar-accent-foreground: 222 32% 14%;
+    --sidebar-border: 32 18% 85%;
+    --sidebar-ring: 191 88% 35%;
+  }
+
+  .dark {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply text-foreground font-sans antialiased;
+    font-family: "Space Grotesk", system-ui, sans-serif;
+    background-color: hsl(var(--background));
+    background-image:
+      radial-gradient(circle at 15% 20%, hsl(var(--primary) / 0.12), transparent 45%),
+      radial-gradient(circle at 85% 10%, hsl(var(--accent) / 0.12), transparent 40%),
+      linear-gradient(140deg, hsl(var(--background)) 0%, hsl(var(--card)) 45%, hsl(var(--background)) 100%);
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: "Fraunces", "Times New Roman", serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-glass/70 backdrop-blur-xl border border-glass-border/50;
+    box-shadow: 0 20px 60px -40px hsl(var(--foreground) / 0.35);
+  }
+
+  .glass-card {
+    @apply bg-card/80 backdrop-blur-2xl border border-glass-border/60 rounded-3xl;
+    box-shadow:
+      0 28px 80px -60px hsl(var(--foreground) / 0.45),
+      0 1px 0 hsl(var(--foreground) / 0.05) inset;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary via-primary/80 to-accent bg-clip-text text-transparent;
+  }
+
+  .gradient-border {
+    @apply relative;
+    background: linear-gradient(hsl(var(--card)), hsl(var(--card))) padding-box,
+                linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent))) border-box;
+    border: 1px solid transparent;
+  }
+
+  .glow-primary {
+    box-shadow: 0 0 30px hsl(var(--primary) / 0.35),
+                0 0 80px hsl(var(--primary) / 0.2);
+  }
+
+  .glow-accent {
+    box-shadow: 0 0 30px hsl(var(--accent) / 0.35),
+                0 0 80px hsl(var(--accent) / 0.2);
+  }
+
+  .text-glow {
+    text-shadow: 0 0 30px hsl(var(--primary) / 0.35);
+  }
+
+  .noise-bg {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.05;
+  }
+
+  .hero-grid {
+    background-image:
+      linear-gradient(hsl(var(--foreground) / 0.08) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(var(--foreground) / 0.08) 1px, transparent 1px);
+    background-size: 120px 120px;
+  }
+}
+
+@layer utilities {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  .tilt-card {
+    transform: translateZ(0);
+    transition: transform 400ms ease, box-shadow 400ms ease;
+  }
+
+  .tilt-card:hover {
+    transform: rotateX(6deg) rotateY(-6deg) translateZ(8px);
+  }
+
+  .float-3d {
+    animation: float-3d 10s ease-in-out infinite;
+    transform-style: preserve-3d;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-full font-semibold
+           bg-gradient-to-r from-primary via-primary/90 to-accent text-primary-foreground
+           transition-all duration-300 ease-out
+           shadow-lg shadow-primary/25 hover:shadow-xl hover:shadow-primary/30
+           hover:-translate-y-0.5 hover:brightness-110;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-full font-semibold
+           glass border-glass-border/40
+           text-foreground hover:bg-glass-border/20
+           transition-all duration-300 ease-out
+           hover:-translate-y-0.5;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-full font-semibold
+           text-foreground/70 hover:text-foreground hover:bg-muted/70
+           transition-all duration-300 ease-out;
+  }
+
+  .input-field {
+    @apply w-full px-4 py-3 rounded-2xl
+           bg-muted/60 border border-border/70
+           text-foreground placeholder:text-muted-foreground
+           focus:outline-none focus:ring-2 focus:ring-primary/40 focus:border-primary/50
+           transition-all duration-300;
+  }
+
+  .card-hover {
+    @apply transition-all duration-500 ease-out
+           hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/15;
+  }
+
+  .section-padding {
+    @apply px-4 sm:px-6 lg:px-8 py-16 sm:py-20 lg:py-24;
+  }
+
+  .container-custom {
+    @apply max-w-7xl mx-auto;
+  }
+
+  .eyebrow-badge {
+    @apply inline-flex items-center gap-2 rounded-full border border-border/60 bg-card/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground;
+  }
+
+  .section-title {
+    @apply text-3xl sm:text-4xl md:text-5xl font-semibold;
+  }
+
+  .section-subtitle {
+    @apply text-muted-foreground text-base sm:text-lg;
+  }
+}
+
+@keyframes float-3d {
+  0% {
+    transform: translateY(0px) translateZ(0px);
+  }
+  50% {
+    transform: translateY(-18px) translateZ(10px);
+  }
+  100% {
+    transform: translateY(0px) translateZ(0px);
+  }
+}
