@@ -121,8 +121,22 @@ export function Footer() {
             Powered by Multimodal AI
           </p>
         </div>
+
+        <div className="pt-4 text-center">
+          <p className="text-sm text-muted-foreground">
+            Made by{' '}
+            <a
+              href="https://tarunkomati.in"
+              target="_blank"
+              rel="noreferrer"
+              className="font-medium text-foreground transition-colors hover:text-primary"
+            >
+              Tarun Komati
+            </a>{' '}
+            &amp; Team
+          </p>
+        </div>
       </div>
     </footer>
   );
 }
-
